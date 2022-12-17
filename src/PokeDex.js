@@ -9,6 +9,20 @@ function PokeDex() {
   const [pokemonDetail, setPokemonDetail] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const getDomainInfo = async () => {
+    try {
+        setIsLoading(true); // Set loading before sending API request
+        const res = await axios.get('https://pokeapi.co/api/v2/pokemon ', {
+            params: {  },
+        });
+        const response = res; // Response received
+        setIsLoading(false); // Stop loading
+    } catch (error) {
+        setIsLoading(false); // Stop loading in case of error
+        console.error(error);
+    }
+};
+
   const customStyles = {
     content: {
       top: "50%",
@@ -18,7 +32,7 @@ function PokeDex() {
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       background: "black",
-      color: "white",
+      color: "yellow",
     },
     overlay: { backgroundColor: "grey" },
   };
